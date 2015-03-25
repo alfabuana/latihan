@@ -51,6 +51,8 @@
 .Trashes
 
 # Directories potentially created on remote AFP share
+.target
+target
 .AppleDB
 .AppleDesktop
 Network Trash Folder
