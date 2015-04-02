@@ -1,12 +1,15 @@
 package latihan
 
 import java.awt.event.ItemEvent;
+
 import latihan.widget.GeneralFunction
 
 
 
 
+
 import org.vaadin.dialogs.ConfirmDialog
+
 
 
 import com.vaadin.data.Property
@@ -24,7 +27,10 @@ import com.vaadin.event.MouseEvents.ClickEvent
 import com.vaadin.event.MouseEvents.ClickListener
 import com.vaadin.server.DefaultErrorHandler
 import com.vaadin.server.UserError
+import com.vaadin.shared.ui.colorpicker.Color
 import com.vaadin.ui.Button
+import com.vaadin.ui.ColorPicker
+import com.vaadin.ui.ColorPickerArea;
 import com.vaadin.ui.ComboBox
 import com.vaadin.ui.Component
 import com.vaadin.ui.DateField
@@ -40,7 +46,11 @@ import com.vaadin.ui.TextField
 import com.vaadin.ui.VerticalLayout
 import com.vaadin.ui.Window
 import com.vaadin.ui.MenuBar.MenuItem
+import com.vaadin.ui.components.colorpicker.ColorChangeEvent
+import com.vaadin.ui.components.colorpicker.ColorChangeListener
+
 import latihan.FacilityService
+
 
 
 
@@ -55,7 +65,7 @@ class MasterFacility extends VerticalLayout{
 	private MenuBar menuBar
 	private Window window
 	private TextField textId
-	
+	private ColorPicker colorPicker
 	//==============================
 	private TextField textName
 	private TextField textDescription
@@ -140,6 +150,8 @@ class MasterFacility extends VerticalLayout{
 					def object = [id:textId.getValue(),
 								  name:textName.getValue().toString(),
 								  description:textDescription.getValue().toString(),
+								  fieldCSSColor:colorPicker.getColor().getCSS(),
+								  fieldRGBColor:colorPicker.getColor().getRGB()
 								  ]
 					
 					if (object.id == "")
@@ -225,6 +237,11 @@ class MasterFacility extends VerticalLayout{
 			textDescription.setBuffered(true)
 			textDescription.setImmediate(false)
 			layout.addComponent(textDescription)
+			layout.addComponent(new Label("Field Color : "))
+			colorPicker = new ColorPicker("Field Color")
+			colorPicker.setColor(new Color(item.getItemProperty("fieldRGBColor").value))
+			colorPicker.setCaption(item.getItemProperty("fieldCSSColor").toString())
+			layout.addComponent(colorPicker)
 			layout.addComponent(createSaveButton())
 			layout.addComponent(createCancelButton())
 			getUI().addWindow(window);
@@ -255,6 +272,17 @@ class MasterFacility extends VerticalLayout{
 			layout.addComponent(textName)
 			textDescription = new TextField("Deskripsi")
 			layout.addComponent(textDescription)
+			layout.addComponent(new Label("Field Color : "))
+			colorPicker = new ColorPicker("Field Color")
+			colorPicker.setCaption(colorPicker.getColor().getCSS())
+			colorPicker.addColorChangeListener(new ColorChangeListener() {
+				public void colorChanged(ColorChangeEvent event) {
+					// Do something with the color
+					
+					 colorPicker.setCaption(event.getColor().getCSS())
+				}
+			})
+			layout.addComponent(colorPicker)
 //			def textArea = new TextArea("Text Area")
 //			layout.addComponent(textArea)
 //			def dateField = new DateField("Date Field")

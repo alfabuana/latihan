@@ -9,7 +9,8 @@ class Facility {
 	Date dateCreated
 	Date lastUpdated
 	Boolean isDeleted
-
+	String fieldCSSColor
+	Integer fieldRGBColor
     static constraints = {
 
     }

@@ -15,7 +15,7 @@ class FacilityService {
 	}
 	
 	def getList(){
-		return Facility.getAll()
+		return Facility.findAllByIsDeleted(false)
 	}
 	
 	def createObject(object){
@@ -36,6 +36,8 @@ class FacilityService {
 		Facility valObject = Facility.read(object.id)
 		valObject.name = object.name
 		valObject.description = object.description
+		valObject.fieldCSSColor = object.fieldCSSColor
+		valObject.fieldRGBColor = object.fieldRGBColor
 		valObject = facilityValidationService.updateObjectValidation(valObject)
 		if (valObject.errors.getErrorCount() == 0)
 		{

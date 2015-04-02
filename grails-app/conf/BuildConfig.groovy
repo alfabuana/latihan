@@ -45,6 +45,7 @@ grails.project.dependency.resolution = {
         mavenRepo "http://download.java.net/maven/2/"
         mavenRepo "http://repository.jboss.com/maven2/"
 		mavenRepo "http://maven.vaadin.com/vaadin-addons/"
+		
 		}
 
     dependencies {
@@ -53,6 +54,7 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
 		compile 'javax.validation:validation-api:1.1.0.Final'
 		compile 'org.vaadin.addon:confirmdialog:2.1.2'
+//		compile 'org.vaadin.addons:cssinject:2.0.3'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
     }
 
@@ -64,8 +66,9 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
-		compile ":vaadin:7.3.6"
+		compile ":vaadin:7.4.1"
 		compile ":shiro:1.2.1"
+		
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"

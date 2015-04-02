@@ -79,15 +79,13 @@ class MasterBooking extends VerticalLayout{
 	private FormLayout layout
 	private Action actionDelete = new Action("Delete");
 	private int code = 1;
-	private static final int MAX_PAGE_LENGTH = 15;
 	String Title = "Facility"
-//						Constant.MenuName.Item + ":";
 	
 	public MasterBooking() {
 //		currentUser = SecurityUtils.getSubject();
 		
 		initTable();
-		
+		setSizeFull()
 		HorizontalLayout menu = new HorizontalLayout()
 		menu.setWidth("100%")
 //		menu.addComponent(createAddButton())
@@ -140,6 +138,8 @@ class MasterBooking extends VerticalLayout{
 		//	END BUTTON MENU
 	
 		addComponent(table)
+		setExpandRatio(menu,0)
+		setExpandRatio(table,20)
 //		table.setPageLength(table.size())
 	}
 	
@@ -566,8 +566,9 @@ class MasterBooking extends VerticalLayout{
 		table.setSelectable(true)
 		table.setImmediate(false)
 //		table.setPageLength(table.size())
-		table.setSizeFull()
 		
+		table.setSizeFull()
+		table.setHeight("100%")
 //		table.addValueChangeListener(new Property.ValueChangeListener() {
 //			public void valueChange(ValueChangeEvent event) {
 //				selectedRow = table.getValue()

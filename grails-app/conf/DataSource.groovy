@@ -4,6 +4,8 @@ dataSource {
     driverClassName = "org.postgresql.Driver"
     username = "postgres"
     password = "123"
+//	username = "webadmin"
+//	password = "DZGpya11811"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -34,7 +36,7 @@ environments {
         dataSource {
             dbCreate = "update"
 //            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-			url = "jdbc:postgresql://localhost:5432/latihan"
+			url = "jdbc:postgresql://128.199.148.227:5432/latihan"
 			properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true

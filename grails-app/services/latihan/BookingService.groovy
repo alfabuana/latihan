@@ -16,9 +16,16 @@ class BookingService {
 	def getObjectById(def object){
 		return Booking.get(object)
 	}
-	def getList(){
-		return Booking.getAll()
+	
+	def getList(Date startTime,Date endTime){
+		return Booking.findAll{isDeleted == false && (startDate >= startTime || startDate <= endTime)}
 	}
+	
+	def getList(){
+		return Booking.findAll(sort:"id",order:"desc"){isDeleted == false}
+	}
+	
+	
 	def createObject(object){
 		object.isDeleted = false 
 		if (object.startTime != null)
